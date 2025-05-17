@@ -30,8 +30,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 });
 
-Route::post('/api/register-consumer', [AuthController::class, 'registerConsumer']);
-Route::post('/api/register-merchant', [AuthController::class, 'registerMerchant']);
+Route::post('/api/register-consumer', [AuthController::class, 'register']);
+Route::post('/api/register-merchant', [AuthController::class, 'register']);
 Route::get('/api/login', [AuthController::class, 'login']);
 Route::post('/api/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 Route::get('/api/user', [AuthController::class, 'me'])->middleware('auth:sanctum');
