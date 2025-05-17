@@ -7,42 +7,42 @@ const GREEN = '#4CBB17';
 
 export default function Connexion() {
     const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
-  const [loading, setLoading] = useState(false);
+    const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
+    const [loading, setLoading] = useState(false);
 
-  const handleLogin = async () => {
-    setLoading(true);
-    setMessage('');
+    const handleLogin = async () => {
+        setLoading(true);
+        setMessage('');
 
-    try {
-      const response = await fetch('http://127.0.0.1:8000/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      });
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/login', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+            email,
+            password,
+            }),
+        });
 
-      const data = await response.json();
+        const data = await response.json();
 
-      if (response.ok) {
-        setMessage('✅ Connexion réussie !');
-        // Redirige vers la page d'accueil ou dashboard ici
-        // Exemple : navigation.navigate('Home')
-      } else {
-        setMessage('❌ ' + (data.message || 'Erreur inconnue'));
-      }
-    } catch (error) {
-      setMessage('❌ Erreur réseau');
-      console.error(error);
-    }
+        if (response.ok) {
+            setMessage('✅ Connexion réussie !');
+            // Redirige vers la page d'accueil ou dashboard ici
+            // Exemple : navigation.navigate('Home')
+        } else {
+            setMessage('❌ ' + (data.message || 'Erreur inconnue'));
+        }
+        } catch (error) {
+        setMessage('❌ Erreur réseau');
+        console.error(error);
+        }
 
-    setLoading(false);
-  };
+        setLoading(false);
+    };
 
     return (
         <SafeAreaView style={styles.container}>
