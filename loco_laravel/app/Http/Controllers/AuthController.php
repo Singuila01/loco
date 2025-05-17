@@ -68,6 +68,7 @@ class AuthController extends Controller
     {
         return response()->json(['user' => Auth::user()]);
     }
+
 }
 
 // namespace App\Http\Controllers;
