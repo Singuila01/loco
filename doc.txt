@@ -1,0 +1,10 @@
+1 Stack Technique
+Environnement de développement (VSCODE)
+Gestion des données (MySQL)
+Modélisation de la base de données (Looping)
+
+2 User Case
+
+3 MCD
+
+4 Architecture MVC
