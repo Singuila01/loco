@@ -7,9 +7,41 @@ export default function Inscription() {
     const [prenom, setPrenom] = useState('');
     const [email, setEmail] = useState('');
     const [motDePasse, setMotDePasse] = useState('');
+    const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
+    const [loading, setLoading] = useState(false);
 
-    const handleSubmit = () => {
-        // Traitez la connexion ici
+    const handleSubmit = async () => {
+        setLoading(true);
+        setMessage('');
+
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/register-merchant', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+            email,
+            password,
+            }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            setMessage('✅ Connexion réussie !');
+            // Redirige vers la page d'accueil ou dashboard ici
+            // Exemple : navigation.navigate('Home')
+        } else {
+            setMessage('❌ ' + (data.message || 'Erreur inconnue'));
+        }
+        } catch (error) {
+        setMessage('❌ Erreur réseau');
+        console.error(error);
+        }
+
+        setLoading(false);
     };
 
     return (
@@ -144,3 +176,7 @@ const styles = StyleSheet.create({
         padding: 20,
     }
 });
+
+function setLoading(arg0: boolean) {
+    throw new Error('Function not implemented.');
+}
