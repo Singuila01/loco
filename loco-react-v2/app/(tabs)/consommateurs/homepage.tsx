@@ -16,57 +16,9 @@ type Category = {
     description_categorie: string;
 }
 
-const API_URL = 'http://127.0.0.1:8000/api'; // Remplace par l'URL de ton API
+const API_URL = 'http://127.0.0.1:8000/api';
 
 const popularProducts = null;
-
-// const popularProducts = [
-//     {
-//         id: '1',
-//         name: 'Baguette Tradition',
-//         price: 1.20,
-//         image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80',
-//     },
-//     {
-//         id: '2',
-//         name: 'Croissant',
-//         price: 0.90,
-//         image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80',
-//     },
-//     {
-//         id: '3',
-//         name: 'Pain Complet',
-//         price: 1.50,
-//         image: 'https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80',
-//     },
-//     {
-//         id: '4',
-//         name: 'Baguette Tradition',
-//         price: 1.20,
-//         image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80',
-//     },
-//     {
-//         id: '5',
-//         name: 'Croissant',
-//         price: 0.90,
-//         image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80',
-//     },
-//     {
-//         id: '6',
-//         name: 'Pain Complet',
-//         price: 1.50,
-//         image: 'https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80',
-//     },
-// ];
-
-// const categories = [
-//     { id: 'cat1', name: 'Pains', image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80' },
-//     { id: 'cat2', name: 'Viennoiseries', image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80' },
-//     { id: 'cat3', name: 'Pâtisseries', image: 'https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80' },
-//     { id: 'cat3', name: 'Pâtisseries', image: 'https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80' },
-//     { id: 'cat4', name: 'Pâtisseries', image: 'https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80' },
-//     { id: 'cat5', name: 'Pâtisseries', image: 'https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80' },
-// ];
 
 export default function Homepage() {
     const [data, setData] = useState<Product[] | null>(null);
@@ -134,23 +86,6 @@ export default function Homepage() {
         );
     }
 
-    // if (data) {
-    //     return (
-    //     <View style={styles.container}>
-    //         <FlatList
-    //         data={data}
-    //         keyExtractor={(item) => item.id.toString()}
-    //         renderItem={({ item }) => (
-    //             <View>
-    //             <Text>{item.nom_produit}</Text>
-    //             {/* Affiche d'autres propriétés de l'objet item ici */}
-    //             </View>
-    //         )}
-    //         />
-    //     </View>
-    //     );
-    // }
-
     return (
         <ScrollView style={styles.container}>
             {/* Position */}
@@ -171,37 +106,22 @@ export default function Homepage() {
             <Text style={styles.sectionTitle}>Produits populaires</Text>
             { products ?
                 <FlatList
-                data={products}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                keyExtractor={item => item.id}
-                contentContainerStyle={{ paddingLeft: 16, paddingBottom: 8 }}
-                renderItem={({ item }) => (
-                    <View style={styles.productCard}>
-                        <View style={{ position: 'relative', width: '100%', height: 225, marginBottom: 8, backgroundColor: '#596548', borderRadius: 12, overflow: 'hidden' }}>
-                            {/* <Image source={{ uri: item.image }} style={{ ...StyleSheet.absoluteFillObject, borderRadius: 12 }} resizeMode="cover" /> */}
-                            <View style={{ position: 'absolute', bottom: 8, left: 8, right: 8, backgroundColor: '#fff', borderRadius: 12, padding: 8, alignItems: 'center', justifyContent: 'center' }}>
-                                <Text style={{ color: '#000', fontWeight: '700', fontSize: 15, textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 2 }}>
-                                    {item.nom_produit}                                   
-                                </Text>
-                                <Text style={{ color: '#000', fontWeight: '500', fontSize: 14, textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 2 }}>
-                                    {item.prix_produit} €
-                                </Text>
-                            </View>
+                    data={products}
+                    keyExtractor={item => item.id}
+                    renderItem={({ item }) => (
+                        <View style={styles.productCard}>
+                            <Text>{item.nom_produit}</Text>
+                            <Text>{item.description_produit}</Text>
+                            <Text>{item.prix_produit}</Text>
                         </View>
-                    </View>
-                    // <TouchableOpacity style={styles.productCard} onPress={() => handleProductPress(item)}>
-                        
-                    // </TouchableOpacity>
-                )}
-            />
+                    )}
+                />
             : <Text style={styles.loadingText}>Aucun produit trouvé</Text>}
             
 
             {/* Categories */}
             <Text style={styles.sectionTitle}>Catégories</Text>
             <View style={styles.categoriesContainer}>
-
                 {categories.map(cat => (
                     <TouchableOpacity
                         key={cat.id}
@@ -254,11 +174,12 @@ const styles = StyleSheet.create({
     },
     productCard: {
         borderRadius: 16,
-        marginRight: 16,
+        margin: 16,
         padding: 12,
         alignItems: 'center',
         width: 350,
         elevation: 2,
+        backgroundColor: '#fff',
     },
     productImage: {
         width: 100,
@@ -284,10 +205,14 @@ const styles = StyleSheet.create({
         marginTop: 8,
         marginBottom: 24,
         paddingHorizontal: 8,
+        gap: 16,
     },
     categoryCard: {
         alignItems: 'center',
         width: 100,
+        backgroundColor: 'red',
+        borderRadius: '50%',
+        padding: 15,
     },
     categoryImage: {
         width: 60,

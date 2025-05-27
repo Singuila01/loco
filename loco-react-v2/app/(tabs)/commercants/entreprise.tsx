@@ -1,3 +1,4 @@
+import { Link } from 'expo-router';
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 
@@ -96,7 +97,8 @@ const Entreprise: React.FC = () => {
                     </View>
                 ))}
                 <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
-                    <Text style={styles.submitButtonText}>Enregistrer</Text>
+                    {/* <Text style={styles.submitButtonText}>Enregistrer</Text> */}
+                    <Link href="/(tabs)/commercants/homepage" style={styles.submitButtonText}>Page d'accueil</Link>
                 </TouchableOpacity>
             </ScrollView>
         </View>
@@ -108,20 +110,21 @@ export default Entreprise;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#2ecc40', // Vert
+        backgroundColor: '#4CBB17', // Vert
         justifyContent: 'center',
         alignItems: 'center',
     },
     formContainer: {
+        flexGrow: 1,
+        justifyContent: 'center',
+        padding: 20,
         backgroundColor: '#fff',
-        borderRadius: 16,
-        padding: 24,
-        margin: 24,
-        width: '95%',
+        borderRadius: 12,
         shadowColor: '#000',
-        shadowOpacity: 0.1,
-        shadowRadius: 8,
-        elevation: 4,
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.3,
+        shadowRadius: 4,
+        elevation: 5,
     },
     title: {
         fontSize: 22,

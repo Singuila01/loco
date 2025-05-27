@@ -33,8 +33,8 @@ const SiretScreen: React.FC = () => {
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.nextButton}>
-                    <Text style={styles.nextButtonText}>Suivant</Text>
-                    <Link href="">Suivant</Link>
+                    {/* <Text style={styles.nextButtonText}>Suivant</Text> */}
+                    <Link style={styles.nextButtonText} href="/(tabs)/commercants/entreprise">Suivant</Link>
                 </TouchableOpacity>
             </View>
         </View>
@@ -46,7 +46,7 @@ export default SiretScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#27ae60', // Vert
+        backgroundColor: '#4CBB17', // Vert
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -86,11 +86,11 @@ const styles = StyleSheet.create({
         borderColor: '#e0e0e0',
     },
     uploadButtonText: {
-        color: '#27ae60',
+        color: '#4CBB17',
         fontWeight: '600',
     },
     nextButton: {
-        backgroundColor: '#27ae60',
+        backgroundColor: '#4CBB17',
         borderRadius: 16,
         paddingVertical: 14,
         alignItems: 'center',

@@ -1,7 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, Button } from 'react-native';
 import { Link } from 'expo-router';
 import React from 'react';
+import Navigation from '../navigation/navigation';
+import navigation from '../navigation/navigation';
 
 export default function Index() {
     return (
@@ -12,6 +14,7 @@ export default function Index() {
                 <Link href="/commercants/inscription" style={styles.link_con}>Je vends mes produits</Link>
             </View>
         </View>
+        
     );
 }
 
