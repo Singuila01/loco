@@ -37,15 +37,16 @@ export default function CustomMenu() {
 
 const styles = StyleSheet.create({
   container: {
+    position: 'absolute',
     flexDirection: 'row',
     justifyContent: 'space-around',
     paddingVertical: 12,
     backgroundColor: '#eee',
-    margin: 10,
+    margin: 'auto',
+    marginBottom: 20,
     borderRadius: 50,
-
-    // Pour coller en bas de l'écran (à ajuster si besoin)
-    position: 'absolute',
+    width: '100%',
+    maxWidth: 500,
     bottom: 0,
     left: 0,
     right: 0,
