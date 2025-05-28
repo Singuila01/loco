@@ -4,11 +4,13 @@ import { View, Text, Image, FlatList, StyleSheet, ScrollView } from 'react-nativ
 
 type Commande = {
     id: string;
-    titre: string;
-    date: string;
-    montant: number;
-    nom: string;
-    prenom: string;
+    nom_commande: string;
+    description_commande: string;
+    prix_total: string;
+    etat_commande: string;
+    id_utilisateur: string;
+    id_produit: string;
+    created_at: string;
 };
 
 const totalCommandes28Jours = 42;
@@ -24,11 +26,18 @@ type Product = {
     id: string;
     nom_produit: string;
     description_produit: string;
-    // Ajoutez d'autres propriétés si nécessaire
 };
+
+function convertDate(ladate: any) {
+    const date = new Date(ladate);
+    const formattedDate = date.toLocaleDateString('fr-FR');
+    console.log(formattedDate); // Affiche : 29/04/2025
+    return date;
+}
 
 export default function Homepage() {
     const [products, setProducts] = useState<Product[]>([]);
+    const [commandes, setCommandes] = useState<Commande[]>([]);
     const [loading, setLoading] = useState(true);
     
     useEffect(() => {
@@ -36,6 +45,21 @@ export default function Homepage() {
         .then(response => response.json())
         .then(data => {
             setProducts(data); // Accès direct à `results`
+
+            console.log(data);
+            
+            setLoading(false);
+        })
+        .catch(error => {
+            console.error('Erreur lors de la récupération des données :', error);
+            setLoading(false);
+        });
+    }, []);
+    useEffect(() => {
+        fetch('http://127.0.0.1:8000/api/consumer/commandes')
+        .then(response => response.json())
+        .then(data => {
+            setCommandes(data);
 
             console.log(data);
             
@@ -59,34 +83,34 @@ export default function Homepage() {
                 </View>
 
                 {/* Commandes */}
-                <Text style={styles.sectionTitle}>Dernières commandes</Text>
+                <View style={styles.row}>
+                    <Text style={styles.sectionTitle}>Dernières commandes</Text>
+                    <Link style={styles.buttonLink} href='/(tabs)/commercants/commande'>Tous voir</Link>
+                </View>
                 
-                <FlatList
-                    data={products}
-                    keyExtractor={item => item.id}
-                    renderItem={({ item }) => (
-                        <View style={styles.commandeItem}>
-                            <Text>{item.nom_produit}</Text>
-                            <Text>{item.description_produit}</Text>
+                {commandes.length > 0 ? (
+                    <View style={styles.commandeItem}>
+                        <Text>{commandes[0].nom_commande}</Text>
+                        <View style={styles.commandeInfo}>
+                            <View>
+                                <Text>Montant</Text>
+                                <Text>{commandes[0].prix_total}</Text>
+                            </View>
+                            <View>
+                                <Text>Commande</Text>
+                                <Text>{commandes[0].id}</Text>
+                            </View>
+                            <View>
+                                <Text>Date</Text>
+                                <Text>{convertDate(commandes[0].created_at).toLocaleDateString('fr-FR')}</Text>
+                            </View>
                         </View>
-                    )}
-                />
-                {/* <FlatList
-                    data={products}
-                    keyExtractor={item => item.id}
-                    renderItem={(item) => (
-                        <View style={styles.commandeItem}>
-                            <View key={index}>
-                                <Text style={styles.commandeTitle}>{product.nom_produit}</Text>
-                                <Text style={styles.commandeSubtitle}>{product.description_produit}</Text>
-                            </View>                            
-                        </View>
-                    )}
-                    style={styles.commandesList}
-                /> */}
+                    </View>
+                ) : (
+                    <Text>Aucune commande trouvée.</Text>
+                )}
 
                 {/* Statistiques */}
-                <Link href="/commercants/connexion">FormSreen</Link>
                 <Text style={styles.sectionTitle}>Statistiques</Text>
                 <View style={styles.statsContainer}>
                     <View style={styles.statBox}>
@@ -125,14 +149,17 @@ const styles = StyleSheet.create({
     profileImage: { width: 60, height: 60, borderRadius: 30, marginRight: 16 },
     profileName: { fontSize: 20, fontWeight: 'bold' },
     sectionTitle: { fontSize: 18, fontWeight: '600', marginVertical: 12 },
+    commandeInfo: { flexDirection: 'row', gap: 20},
     commandesList: { marginBottom: 16 },
-    commandeItem: { flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#eee', padding: 20, borderRadius: 10, backgroundColor: '#fff', marginBottom: 8, width: '100%', gap: 8, flexWrap: 'wrap' },
+    commandeItem: { flexDirection: 'column', borderBottomWidth: 1, borderBottomColor: '#eee', padding: 20, borderRadius: 10, backgroundColor: '#fff', marginBottom: 8, width: '100%', gap: 8, flexWrap: 'wrap' },
     commandeTitle: { fontWeight: '700', fontSize: 28, color: '#333', paddingBottom: 8 },
     commandeDate: { color: '#888' },
+    row: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 20 },
     commandeMontant: { fontWeight: 'bold', color: '#2e7d32' },
     commandeSubtitle: { fontWeight: 500, fontSize: 18, color: '#555' },
     statsContainer: { flex: 2, marginTop: 8, gap: 8, flexDirection: 'column', justifyContent: 'space-between', flexWrap: 'nowrap' },
     statBox: { flex: 1, backgroundColor: '#fff', padding: 16, borderRadius: 10, alignItems: 'center', marginHorizontal: 4 },
     statValue: { fontSize: 22, fontWeight: 'bold', color: '#1976d2' },
     statLabel: { fontSize: 14, color: '#555', marginTop: 4 },
+    buttonLink: { color: '#aaa' },
 });

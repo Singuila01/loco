@@ -102,21 +102,22 @@ export default function Homepage() {
                 />
             </View>
 
-            {/* Popular Products */}
             <Text style={styles.sectionTitle}>Produits populaires</Text>
-            { products ?
+            {products.length > 0 && (
                 <FlatList
-                    data={products}
+                    data={products.slice(0, 5)} // Display only the first 5 products
                     keyExtractor={item => item.id}
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
                     renderItem={({ item }) => (
                         <View style={styles.productCard}>
-                            <Text>{item.nom_produit}</Text>
-                            <Text>{item.description_produit}</Text>
-                            <Text>{item.prix_produit}</Text>
+                            <Text>{products[products.length - 1].nom_produit}</Text>
+                            <Text>{products[products.length - 1].description_produit}</Text>
+                            <Text>{products[products.length - 1].prix_produit}</Text>
                         </View>
                     )}
                 />
-            : <Text style={styles.loadingText}>Aucun produit trouvé</Text>}
+            )}: <Text style={styles.loadingText}>Aucun produit trouvé</Text>
             
 
             {/* Categories */}
@@ -173,6 +174,7 @@ const styles = StyleSheet.create({
         marginTop: 12,
     },
     productCard: {
+        boxSizing: 'border-box',
         borderRadius: 16,
         margin: 16,
         padding: 12,

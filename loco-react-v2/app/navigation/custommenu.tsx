@@ -10,7 +10,7 @@ export default function CustomMenu() {
   // Définis ici les liens du menu
   const menuItems = [
     { label: 'Accueil', href: '/' },
-    { label: 'Produits', href: '/consommateurs/homepage' },
+    { label: 'Produits', href: '/consommateurs/produits' },
     { label: 'Panier', href: '/consommateurs/homepage' },
     { label: 'Profil', href: '/consommateurs/homepage' },
   ];
