@@ -9,4 +9,9 @@ class Villes extends Model
 {
     /** @use HasFactory<\Database\Factories\VillesFactory> */
     use HasFactory;
+
+    public function commercant()
+    {
+        return $this->hasMany(Commercant::class);
+    }
 }

@@ -22,6 +22,7 @@ class Commandes extends Model
         'id_utilisateur',
         'id_commercant'
     ];
+    
 
     public function produits()
     {

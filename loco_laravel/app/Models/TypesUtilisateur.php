@@ -9,4 +9,10 @@ class TypesUtilisateur extends Model
 {
     /** @use HasFactory<\Database\Factories\TypesUtilisateurFactory> */
     use HasFactory;
+
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
+
 }
