@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, TextInput, FlatList, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
+import { ScrollView } from "react-native-gesture-handler";
 
 type Product = {
     id: string;
@@ -9,7 +10,7 @@ type Product = {
     prix_produit: number;
 };
 
-const API_URL = 'http://127.0.0.1:8000/api';
+const API_URL = 'http://localhost:8000/api';
 
 export default function ProduitsPage() {
     const [search, setSearch] = useState("");
@@ -46,61 +47,43 @@ export default function ProduitsPage() {
                 onChangeText={setSearch}
             />
 
-            {products.length > 0 && (
-                <FlatList
-                    data={products.slice(0, 5)} // Display only the first 5 products
-                    keyExtractor={item => item.id}
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    renderItem={({ item }) => (
-                         <View style={styles.container}>
-                            <View style={styles.productContainer}>
-                                <Text style={styles.productName}>{item.nom_produit}</Text>
-                                <Text style={styles.productBio}>
-                                    {item.description_produit}
-                                </Text>
-                                <Text style={styles.productStore}>{item.prix_produit}</Text>
-                            </View>
-                            <TouchableOpacity
-                                style={styles.button}
-                                // onPress={() => router.push(`/produit/${item.id}`)}
-                            >
-                                <Text style={styles.buttonText}>Voir</Text>
-                            </TouchableOpacity>
+            <ScrollView>
+                {products.map((product, index) => (
+                    <View key={index} style={styles.container}>
+                        <View style={styles.productContainer}>
+                            <Text style={styles.productName}>{product.nom_produit}</Text>
+                            <Text style={styles.productBio}>
+                                {product.description_produit}
+                            </Text>
+                            <Text style={styles.productStore}>{product.prix_produit}</Text>
                         </View>
-                    )}
-                />
-            )}
-
-            {/* <FlatList
-                data={products}
-                keyExtractor={(item) => item.id}
-                renderItem={renderItem}
-                contentContainerStyle={styles.list}
-            /> */}
+                        <TouchableOpacity
+                            style={styles.button}
+                            // onPress={() => router.push(`/produit/${item.id}`)}
+                        >
+                            <Text style={styles.buttonText}>Voir</Text>
+                        </TouchableOpacity>
+                    </View>
+                ))}
+            </ScrollView>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: { 
-        flex: 1, backgroundColor: "#f7f7f7", padding: 16 
+        flex: 1, flexDirection: 'column', backgroundColor: "#f7f7f7", padding: 16 
     },
     searchBar: {
-        borderColor: "transparent",
-        height: 40,
-        boxShadow: "0 1px 3px rgba(0,0,0,0.2)",
-        borderWidth: 1,
-        borderRadius: 25,
-        paddingHorizontal: 12,
-        marginBottom: 16,
-        backgroundColor: "#fff",
+        backgroundColor: '#fff',
+        borderRadius: 20,
+        padding: 10
     },
     list: { 
         paddingBottom: 16 
     },
     productContainer: {
-        flexDirection: "row",
+        flexDirection: "column",
         alignItems: "center",
         backgroundColor: "#fff",
         borderRadius: 30,

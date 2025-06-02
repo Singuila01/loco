@@ -16,7 +16,7 @@ type Category = {
     description_categorie: string;
 }
 
-const API_URL = 'http://127.0.0.1:8000/api';
+const API_URL = 'http://localhost:8000/api';
 
 const popularProducts = null;
 
@@ -111,9 +111,9 @@ export default function Homepage() {
                     showsHorizontalScrollIndicator={false}
                     renderItem={({ item }) => (
                         <View style={styles.productCard}>
-                            <Text>{products[products.length - 1].nom_produit}</Text>
+                            <Text style={styles.titleProducts}>{products[products.length - 1].nom_produit}</Text>
                             <Text>{products[products.length - 1].description_produit}</Text>
-                            <Text>{products[products.length - 1].prix_produit}</Text>
+                            <Text style={styles.priceProducts}>{products[products.length - 1].prix_produit}€</Text>
                         </View>
                     )}
                 />
@@ -141,7 +141,15 @@ export default function Homepage() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F5F6FA',
+        backgroundColor: '#F2F2F2',
+    },
+    titleProducts: {
+        fontWeight: "bold",
+        fontSize: 20,
+    },
+    priceProducts: {
+        fontWeight: "bold",
+        fontSize: 18,
     },
     positionContainer: {
         paddingTop: 32,
@@ -207,7 +215,7 @@ const styles = StyleSheet.create({
         marginTop: 8,
         marginBottom: 24,
         paddingHorizontal: 8,
-        gap: 16,
+        gap: 25,
     },
     categoryCard: {
         alignItems: 'center',

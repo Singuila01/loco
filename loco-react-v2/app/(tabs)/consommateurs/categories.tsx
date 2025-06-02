@@ -19,23 +19,23 @@ export default function Categories() {
     const [error, setError] = useState<string | null>(null);
     
     useEffect(() => {
-            const fetchCategory = async () => {
-                try {
-                    setLoading(true);
-                    const response = await fetch(`${API_URL}/categories`);
-                    if (!response.ok) throw new Error('Erreur lors du chargement');
-                    const data = await response.json();
-                    setCategories(data);
-                    console.log(data);
-                    console.log("Nombre de données: " + data.length);
-                } catch (err: any) {
-                    setError(err.message || 'Erreur inconnue');
-                } finally {
-                    setLoading(false);
-                }
-            };
-            fetchCategory();
-        }, []);
+        const fetchCategory = async () => {
+            try {
+                setLoading(true);
+                const response = await fetch(`${API_URL}/categories`);
+                if (!response.ok) throw new Error('Erreur lors du chargement');
+                const data = await response.json();
+                setCategories(data);
+                console.log(data);
+                console.log("Nombre de données: " + data.length);
+            } catch (err: any) {
+                setError(err.message || 'Erreur inconnue');
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchCategory();
+    }, []);
 
     return (
         <ScrollView>

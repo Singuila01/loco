@@ -15,6 +15,7 @@ type Commande = {
 
 const totalCommandes28Jours = 42;
 const totalVues = 1200;
+const APIurl = 'http://localhost:8000/api'
 
 const user = {
     nom: 'Dupont',
@@ -41,7 +42,7 @@ export default function Homepage() {
     const [loading, setLoading] = useState(true);
     
     useEffect(() => {
-        fetch('http://127.0.0.1:8000/api/products')
+        fetch('http://localhost:8000/api/products')
         .then(response => response.json())
         .then(data => {
             setProducts(data); // Accès direct à `results`
@@ -56,7 +57,7 @@ export default function Homepage() {
         });
     }, []);
     useEffect(() => {
-        fetch('http://127.0.0.1:8000/api/consumer/commandes')
+        fetch('http://localhost:8000/api/consumer/commandes')
         .then(response => response.json())
         .then(data => {
             setCommandes(data);
@@ -90,7 +91,7 @@ export default function Homepage() {
                 
                 {commandes.length > 0 ? (
                     <View style={styles.commandeItem}>
-                        <Text>{commandes[0].nom_commande}</Text>
+                        <Text style={styles.commandeTitle}>Nom: {commandes[0].nom_commande}</Text>
                         <View style={styles.commandeInfo}>
                             <View>
                                 <Text>Montant</Text>
@@ -149,10 +150,10 @@ const styles = StyleSheet.create({
     profileImage: { width: 60, height: 60, borderRadius: 30, marginRight: 16 },
     profileName: { fontSize: 20, fontWeight: 'bold' },
     sectionTitle: { fontSize: 18, fontWeight: '600', marginVertical: 12 },
-    commandeInfo: { flexDirection: 'row', gap: 20},
+    commandeInfo: { flexDirection: 'row', gap: 10, borderWidth: 1, borderColor: '#ff0000', borderRadius: 20, padding: 5},
     commandesList: { marginBottom: 16 },
     commandeItem: { flexDirection: 'column', borderBottomWidth: 1, borderBottomColor: '#eee', padding: 20, borderRadius: 10, backgroundColor: '#fff', marginBottom: 8, width: '100%', gap: 8, flexWrap: 'wrap' },
-    commandeTitle: { fontWeight: '700', fontSize: 28, color: '#333', paddingBottom: 8 },
+    commandeTitle: { fontWeight: '700', fontSize: 21, color: '#333', paddingBottom: 8 },
     commandeDate: { color: '#888' },
     row: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 20 },
     commandeMontant: { fontWeight: 'bold', color: '#2e7d32' },

@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { Link } from 'expo-router';
 
 export default function ProfileScreen() {
     return (
@@ -31,9 +32,9 @@ export default function ProfileScreen() {
 
             {/* Second Card */}
             <View style={styles.card}>
-                <ProfileItem label="Aide" />
+                <Link href="/consommateurs/aide"><ProfileItem label="Aide" /></Link>
                 <ProfileItem label="Confidentialité" />
-                <ProfileItem label="Mentions légales" />
+                <Link href="/consommateurs/mentionslegales"><ProfileItem label="Mentions légales" /></Link>
                 <ProfileItem label="Gestion du compte" isLast />
             </View>
         </ScrollView>

@@ -24,7 +24,7 @@ const CommandesPage: React.FC = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-            fetch('http://127.0.0.1:8000/api/consumer/commandes')
+            fetch('http://localhost:8000/api/consumer/commandes')
             .then(response => response.json())
             .then(data => {
                 setCommandes(data);
@@ -43,7 +43,7 @@ const CommandesPage: React.FC = () => {
 
     return (
         <ScrollView>
-            <Text>Commandes</Text>
+            <Text style={styles.title}>Commandes</Text>
             {commandes.map(commande => (
                 <TouchableOpacity
                     key={commande.id}
@@ -51,17 +51,19 @@ const CommandesPage: React.FC = () => {
                 >
                     {/* <Image source={{ uri: cat.image }} style={styles.categoryImage} /> */}
                     <Text>{commande.nom_commande}</Text>
-                    <View style={styles.commandeInfo}>
-                        <Text>Montant</Text>
-                        <Text>{commande.prix_total}</Text>
-                    </View>
-                    <View>
-                        <Text>Commande</Text>
-                        <Text>#{commande.id}</Text>
-                    </View>
-                    <View>
-                        <Text>Date</Text>
-                        <Text>{convertDate(commande.created_at).toLocaleDateString('fr-FR')}</Text>
+                    <View style={styles.commandeContainer}>
+                        <View style={styles.commandeInfo}>
+                            <Text>Montant</Text>
+                            <Text>{commande.prix_total}</Text>
+                        </View>
+                        <View style={styles.commandeInfo}>
+                            <Text>Commande</Text>
+                            <Text>#{commande.id}</Text>
+                        </View>
+                        <View style={styles.commandeInfo}>
+                            <Text>Date</Text>
+                            <Text>{convertDate(commande.created_at).toLocaleDateString('fr-FR')}</Text>
+                        </View>
                     </View>
                 </TouchableOpacity>
             ))}
@@ -73,13 +75,24 @@ export default CommandesPage;
 
 const styles = StyleSheet.create({
     container: { flex: 1, padding: 20, paddingTop: 50, paddingBottom: 120, backgroundColor: '#f5f5f5' },
-    profileContainer: { flexDirection: 'row', alignItems: 'center', marginBottom: 24 },
-    profileImage: { width: 60, height: 60, borderRadius: 30, marginRight: 16 },
-    profileName: { fontSize: 20, fontWeight: 'bold' },
+    title: {
+        textAlign: 'center',
+        padding: 10, 
+        fontSize: 25,
+        fontWeight: 700
+    },
     sectionTitle: { fontSize: 18, fontWeight: '600', marginVertical: 12 },
-    commandeInfo: { flexDirection: 'row', gap: 20, borderColor: '#fefefe', borderWidth: 5},
-    commandesList: { marginBottom: 16 },
-    commandeItem: { flexDirection: 'column', borderBottomWidth: 1, borderBottomColor: '#eee', padding: 20, borderRadius: 10, backgroundColor: '#fff', marginBottom: 8, width: '100%', gap: 8, flexWrap: 'wrap' },
+    commandeContainer: {
+        flexDirection: 'row',
+        gap: 30,
+        padding: 10,
+        borderRadius: 20,
+        borderColor: '#cda89d',
+        borderWidth: 3,
+    },
+    commandeInfo: { flexDirection: 'column', gap: 10, borderColor: '#fefefe', borderWidth: 5},
+    commandesList: { margin: 16 },
+    commandeItem: { flexDirection: 'column', borderBottomWidth: 1, borderBottomColor: '#eee', padding: 20, borderRadius: 10, backgroundColor: '#fff', marginBottom: 8, width: '100%', gap: 8, flexWrap: 'wrap', maxWidth: 500, margin: 'auto' },
     commandeTitle: { fontWeight: '700', fontSize: 28, color: '#333', paddingBottom: 8 },
     commandeDate: { color: '#888' },
     row: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 20 },

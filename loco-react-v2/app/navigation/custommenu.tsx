@@ -1,38 +1,49 @@
-// components/CustomMenu.tsx
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Link, useRouter, usePathname } from 'expo-router';
+import { Link, usePathname } from 'expo-router';
 
 export default function CustomMenu() {
-  const pathname = usePathname(); // Chemin actuel, pour savoir où on est
-  const router = useRouter();
+    const pathname = usePathname();
 
-  // Définis ici les liens du menu
-  const menuItems = [
-    { label: 'Accueil', href: '/' },
-    { label: 'Produits', href: '/consommateurs/produits' },
-    { label: 'Panier', href: '/consommateurs/homepage' },
-    { label: 'Profil', href: '/consommateurs/homepage' },
-  ];
+    if (pathname === '/' || pathname === '/commercants/inscription' || pathname === '/commercants/connexion' || pathname === '/consommateurs/inscription' || pathname === '/consommateurs/connexion') {
+        return null;
+    }
 
-  return (
-    <View style={styles.container}>
-      {menuItems.map(({ label, href }) => {
-        // Savoir si c’est la page active
-        const isActive = pathname === href;
+    const isCommercant = pathname.startsWith('/commercants');
+    const isConsommateur = pathname.startsWith('/consommateurs');
 
-        return (
-          <Link
-            key={href}
-            href={href as any}
-            style={[styles.link, isActive && styles.activeLink]}
-          >
-            <Text style={isActive ? styles.activeText : styles.text}>{label}</Text>
-          </Link>
-        );
-      })}
-    </View>
-  );
+    const consommateurMenu = [
+        { label: 'Accueil', href: '/consommateurs/homepage' },
+        { label: 'Produits', href: '/consommateurs/produits' },
+        { label: 'Panier', href: '/consommateurs/panier' },
+        { label: 'Profil', href: '/consommateurs/profile' },
+    ];
+
+    const commercantMenu = [
+        { label: 'Accueil', href: '/commercants/homepage' },
+        { label: 'Mes produits', href: '/commercants/produits' },
+        { label: 'Commandes', href: '/commercants/commandes' },
+        { label: 'Profil', href: '/commercants/profile' },
+    ];
+
+    const menuItems = isCommercant ? commercantMenu : consommateurMenu;
+
+    return (
+        <View style={styles.container}>
+        {menuItems.map(({ label, href }) => {
+            const isActive = pathname === href;
+            return (
+            <Link
+                key={href}
+                href={href as any}
+                style={[styles.link, isActive && styles.activeLink]}
+            >
+                <Text style={isActive ? styles.activeText : styles.text}>{label}</Text>
+            </Link>
+            );
+        })}
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({

@@ -2,14 +2,14 @@ import { useNavigation } from '@react-navigation/native';
 import { View, StyleSheet, Image, Button } from 'react-native';
 import { Link } from 'expo-router';
 import React from 'react';
-import Navigation from '../navigation/navigation';
-import navigation from '../navigation/navigation';
+// import Navigation from '../navigation/navigation';
+// import navigation from '../navigation/navigation';
 
 export default function Index() {
     return (
         <View style={styles.container}>
             <View style={styles.content}>
-                <Image source={{uri: './assets/images/logo.jpg'}} />
+                <Image source={require('../../assets/images/logo.png')} style={styles.image} />
                 <Link href="/consommateurs/inscription" style={styles.link_comm}>Je découvre les commerces</Link>
                 <Link href="/commercants/inscription" style={styles.link_con}>Je vends mes produits</Link>
             </View>
@@ -58,5 +58,10 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         alignItems: 'center',
         textAlign: 'center',
-    }
+    },
+    image: {
+        width: 250,
+        height: 125,
+        resizeMode: 'contain',
+    },
 });

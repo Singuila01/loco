@@ -106,9 +106,9 @@ export default function Inscription() {
                         />
                     </View>
                     
-                    <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-                        {/* <Text style={styles.buttonText}>S'inscrire</Text> */}
-                    </TouchableOpacity>
+                    {/* <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+                        <Text style={styles.buttonText}>S'inscrire</Text>
+                    </TouchableOpacity> */}
 
                     <View style={styles.button}>
                         <Link href="/commercants/siret" style={styles.buttonText}>S'inscrire</Link>

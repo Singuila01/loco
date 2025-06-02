@@ -73,9 +73,9 @@ export default function Inscription() {
                             secureTextEntry
                         />
                     </View>
-                    <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+                    {/* <TouchableOpacity style={styles.button} onPress={handleSubmit}>
                         <Text style={styles.buttonText}>S'inscrire</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     <Link href="/consommateurs/connexion" style={styles.conn}>J'ai déjà un compte ? Se connecter</Link>
                 </View>
             </KeyboardAvoidingView>
