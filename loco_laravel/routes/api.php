@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Commandes;
 use Inertia\Inertia;
 
+use Illuminate\Http\Request;
+
+Route::post('/test', function (Request $request) {
+    return response()->json(['message' => 'Test API OK']);
+});
+
 // Route::get('/api/commandes', function () {
 //     return Commandes::all(); 
 // });

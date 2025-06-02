@@ -38,6 +38,7 @@ Route::get('/api/user', [AuthController::class, 'me'])->middleware('auth:sanctum
 
 // 🗂️ Public
 Route::get('/api/categories', [CategorieController::class, 'index']);
+Route::post('/api/categories', [CategorieController::class, 'store']);
 Route::get('/api/products', [ProduitsController::class, 'index']);
 Route::get('/api/products/{id}', [ProduitsController::class, 'show']);
 Route::get('/api/products/{id}/reviews', [NotationController::class, 'productReviews']);
