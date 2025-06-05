@@ -19,19 +19,12 @@ class Commandes extends Model
         'nom_commande',
         'description_commande',
         'prix_total',
-        'id_utilisateur',
-        'id_commercant'
+        'id_utilisateur'
     ];
     
-
     public function produits()
     {
-        return $this->belongsToMany(Produits::class, 'commandes', 'id', 'id_produit');
-    }
-
-    public function utilisateurs()
-    {
-        return $this->belongsToMany(User::class, 'users', 'id', 'id_utilisateur');
+        return $this->hasMany(Produits::class, 'id_commande');
     }
 
 }

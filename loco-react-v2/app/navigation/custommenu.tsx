@@ -5,7 +5,7 @@ import { Link, usePathname } from 'expo-router';
 export default function CustomMenu() {
     const pathname = usePathname();
 
-    if (pathname === '/' || pathname === '/commercants/inscription' || pathname === '/commercants/connexion' || pathname === '/consommateurs/inscription' || pathname === '/consommateurs/connexion') {
+    if (pathname === '/' || pathname === '/commercants/inscription' || pathname === '/commercants/entreprise' || pathname === '/commercants/siret' || pathname === '/commercants/connexion' || pathname === '/consommateurs/inscription' || pathname === '/consommateurs/connexion') {
         return null;
     }
 
@@ -22,7 +22,7 @@ export default function CustomMenu() {
     const commercantMenu = [
         { label: 'Accueil', href: '/commercants/homepage' },
         { label: 'Mes produits', href: '/commercants/produits' },
-        { label: 'Commandes', href: '/commercants/commandes' },
+        { label: 'Commandes', href: '/commercants/commande' },
         { label: 'Profil', href: '/commercants/profile' },
     ];
 

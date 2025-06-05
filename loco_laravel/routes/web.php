@@ -30,6 +30,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 });
 
+Route::post('/test', function (Request $request) {
+    return response()->json(['message' => 'Test API OK']);
+});
+
 Route::post('/api/register-consumer', [AuthController::class, 'register']);
 Route::post('/api/register-merchant', [AuthController::class, 'register']);
 Route::get('/api/login', [AuthController::class, 'login']);
@@ -40,7 +44,10 @@ Route::get('/api/user', [AuthController::class, 'me'])->middleware('auth:sanctum
 Route::get('/api/categories', [CategorieController::class, 'index']);
 Route::post('/api/categories', [CategorieController::class, 'store']);
 Route::get('/api/products', [ProduitsController::class, 'index']);
+Route::post('/api/products', [ProduitsController::class, 'store']);
 Route::get('/api/products/{id}', [ProduitsController::class, 'show']);
+Route::delete('/api/products/{id}', [ProduitsController::class, 'destroy']);
+Route::put('/api/products/{id}', [ProduitsController::class, 'update']);
 Route::get('/api/products/{id}/reviews', [NotationController::class, 'productReviews']);
 
 // 👤 Profil Consommateur

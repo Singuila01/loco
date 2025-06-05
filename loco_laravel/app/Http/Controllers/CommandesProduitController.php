@@ -2,20 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Stocks;
-use App\Http\Requests\StoreStocksRequest;
-use App\Http\Requests\UpdateStocksRequest;
+use App\Models\commandes_produit;
 use Illuminate\Http\Request;
 
-class StocksController extends Controller
+class CommandesProduitController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $stocks = Stocks::all();
-        return response()->json($stocks);
+        $commandes = commandes_produit::all();
+        return response()->json($commandes);
     }
 
     /**
@@ -32,8 +27,8 @@ class StocksController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validated();
-        $stock = Stocks::create($validatedData);
-        return response()->json($stock, 201);
+        $commande = commandes_produit::create($validatedData);
+        return response()->json($commande, 201);
     }
 
     /**
@@ -41,14 +36,14 @@ class StocksController extends Controller
      */
     public function show($id)
     {
-        $stock = Stocks::findOrFail($id);
-        return response()->json($stock);
+        $commande = commandes_produit::findOrFail($id);
+        return response()->json($commande);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Stocks $stocks)
+    public function edit(commandes_produit $commandes)
     {
         //
     }
@@ -59,26 +54,27 @@ class StocksController extends Controller
     public function update(Request $request, $id)
     {
         // Récupérer l'utilisateur à modifier
-        $stock = Stocks::findOrFail($id);
+        $commande = commandes_produit::findOrFail($id);
 
         // Valider les données de la requête
         $validatedData = $request->validate([
-            'nombre_produits' => 'required|integer|max:255',
+            'quantite' => 'required|integer|max:2',
+            'prix_unitaire' => 'required|integer|max:255',
         ]);
 
         // Mettre à jour les données de l'utilisateur
-        $stock->update($validatedData);
+        $commande->update($validatedData);
 
         // Rediriger avec un message de succès
-        return redirect()->route('')->with('success', 'Stock mis à jour avec succès.');
+        return redirect()->route('')->with('success', 'Utilisateur mis à jour avec succès.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Stocks $stocks)
+    public function destroy(commandes_produit $commandes)
     {
-        $stocks->delete();
+        $commandes->delete();
         return response()->json(['message' => 'Commande supprimée avec succès']);
     }
 }

@@ -16,13 +16,20 @@ return new class extends Migration
             $table->string('nom_produit');
             $table->text('description_produit')->nullable();
             $table->decimal('prix_produit', 8, 2);
-            $table->integer('id_stock');
-            $table->integer('id_commercant');
-            $table->integer('id_categorie');
             $table->integer('nouveaute')->default(1);
-            $table->foreign('id_stock')->references('id')->on('stock')->onDelete('cascade');
+            $table->integer('nombre_produit');
+            $table->integer('bio');
+            $table->string('quantite_disponible');
+            $table->string('vendu_par');
+            
+            $table->unsignedBigInteger('id_type_poids');
+            $table->foreign('id_type_poids')->references('id')->on('type_poids');
+
+            $table->unsignedBigInteger('id_commercant');
             $table->foreign('id_commercant')->references('id')->on('commercants')->onDelete('cascade');
-            $table->foreign('id_categorie')->references('id')->on('categories')->onDelete('cascade');
+
+            $table->unsignedBigInteger('id_categorie');
+            $table->foreign('id_categorie')->references('id')->on('categories');
             $table->timestamps();
         });
     }

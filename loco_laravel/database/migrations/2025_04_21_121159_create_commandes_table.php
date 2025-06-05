@@ -16,12 +16,9 @@ return new class extends Migration
             $table->string('nom_commande');
             $table->text('description_commande');
             $table->float('prix_total');
-            $table->integer('quantite');
             $table->boolean('etat_commande')->default(false);
             $table->integer('id_utilisateur');
-            $table->integer('id_produit');
             $table->foreign('id_utilisateur')->references('id')->on('utilisateurs')->onDelete('cascade');
-            $table->foreign('id_produit')->references('id')->on('produit')->onDelete('cascade');
             $table->timestamps();
         });
     }

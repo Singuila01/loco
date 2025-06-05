@@ -18,16 +18,15 @@ use Inertia\Inertia;
 
 use Illuminate\Http\Request;
 
-Route::post('/test', function (Request $request) {
-    return response()->json(['message' => 'Test API OK']);
-});
+// Route::post('/test', function (Request $request) {
+//     return response()->json(['message' => 'Test API OK']);
+// });
 
-// Route::get('/api/commandes', function () {
-//     return Commandes::all(); 
-// });
-// Route::get('/api/commandes/{id}', function ($id) {
-//     return Commandes::find($id); 
-// });
+// Route::get('/products', [ProduitsController::class, 'index']);
+// Route::post('/products', [ProduitsController::class, 'store']);
+// Route::get('/products/{id}', [ProduitsController::class, 'show']);
+// Route::delete('/products/{id}', [ProduitsController::class, 'destroy']);
+// Route::put('/products/{id}', [ProduitsController::class, 'update']);
 
 // Route::get('/api/commandes/{id}/produits', fn($id) => Commandes::with('produits')->find($id)->produits);
 // Route::get('/api/commandes/{id}/commercants', fn($id) => Commandes::with('commercants')->find($id)->commercants);

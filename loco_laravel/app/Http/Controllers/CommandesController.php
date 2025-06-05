@@ -63,11 +63,10 @@ class CommandesController extends Controller
 
         // Valider les données de la requête
         $validatedData = $request->validate([
-            'nom_produit' => 'required|string|max:255',
+            'nom_produit' => 'required|string|max:100',
             'description_commande' => 'required|string|max:255',
-            'prix_total' => 'required|float|max:255',
-            'quantite' => 'required|integer|max:255',
-            'etat_commande' => 'required|integer|max:255',
+            'prix_total' => 'required|numeric|max:999.99',
+            'etat_commande' => 'required|integer|max:2',
         ]);
 
         // Mettre à jour les données de l'utilisateur

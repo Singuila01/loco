@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { Link } from 'expo-router';
 
 export default function ProfileScreen() {
     return (
@@ -53,9 +54,9 @@ export default function ProfileScreen() {
 
             {/* Deuxième zone */}
             <View style={styles.card}>
-                <ProfileItem icon="help-circle-outline" label="Aide" />
-                <ProfileItem icon="lock-closed-outline" label="Confidentialité" />
-                <ProfileItem icon="document-text-outline" label="Mentions légales" />
+                <Link href="/commercants/aide"><ProfileItem label="Aide" icon={undefined} /></Link>
+                <Link href="/commercants/confidentialité"><ProfileItem icon="lock-closed-outline" label="Confidentialité" /></Link>
+                <Link href="/commercants/mentionslegales"><ProfileItem label="Mentions légales" icon={undefined} /></Link>
                 <ProfileItem icon="settings-outline" label="Gestion du compte" isLast />
             </View>
         </ScrollView>
@@ -84,6 +85,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#F2F2F2",
         paddingHorizontal: 20,
+        marginBottom: 80,
     },
     header: {
         paddingTop: 40,
