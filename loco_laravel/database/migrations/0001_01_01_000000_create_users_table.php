@@ -16,8 +16,10 @@ return new class extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->string('adresse_mail')->unique();
+            $table->string('adresse');
             $table->string('mot_de_passe');
             $table->string('telephone')->unique();
+            $table->string('point_fidelisation');
             $table->integer('id_type');
             $table->foreign('id_type')->references('id')->on('type_utilisateurs')->onDelete('cascade');
             $table->timestamps();

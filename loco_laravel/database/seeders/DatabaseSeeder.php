@@ -8,7 +8,7 @@ use App\Models\Commercant;
 use App\Models\Notation;
 use App\Models\Produits;
 use App\Models\Signalement;
-use App\Models\commandes_produit;
+use App\Models\CommandesProduit;
 use App\Models\TypesUtilisateur;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         Categorie::factory(10)->create();
         Commercant::factory(10)->create();
         Notation::factory(10)->create();
-        commandes_produit::factory(10)->create();
+        CommandesProduit::factory(10)->create();
         Signalement::factory(10)->create();
         TypesUtilisateur::factory(10)->create();
         User::factory(10)->create();

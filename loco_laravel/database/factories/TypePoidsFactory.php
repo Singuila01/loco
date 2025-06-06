@@ -17,7 +17,7 @@ class TypePoidsFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nom_poids' => fake()->name(),
         ];
     }
 }

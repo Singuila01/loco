@@ -17,7 +17,10 @@ class CommandesProduitFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'prix_produit' => fake()->randomFloat(2, 1, 1000),
+            'quantite' => fake()->numberBetween(1, 100),
+            'id_produit' => fake()->numberBetween(1, 100),
+            'id_commande' => fake()->numberBetween(1, 100),
         ];
     }
 }

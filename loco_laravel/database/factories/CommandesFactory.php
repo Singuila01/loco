@@ -20,10 +20,8 @@ class CommandesFactory extends Factory
             'nom_commande' => fake()->name(),
             'description_commande' => fake()->sentence(),
             'prix_total' => fake()->randomFloat(2, 1, 1000),
-            'quantite' => fake()->numberBetween(1, 100),
             'etat_commande' => fake()->boolean(),
             'id_utilisateur' => fake()->numberBetween(1, 100),
-            'id_produit' => fake()->numberBetween(1, 100),
         ];
     }
 }

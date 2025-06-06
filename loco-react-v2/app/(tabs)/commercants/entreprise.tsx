@@ -113,6 +113,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#4CBB17', // Vert
         justifyContent: 'center',
         alignItems: 'center',
+        height: 5,
+        width: "auto"
     },
     formContainer: {
         flexGrow: 1,

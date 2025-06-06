@@ -21,7 +21,11 @@ class ProduitsFactory extends Factory
             'description_produit' => fake()->sentence(),
             'prix_produit' => fake()->randomFloat(2, 1, 100),
             'nouveaute' => fake()->numberBetween(0, 1),
-            'id_stock' => fake()->numberBetween(1, 10),
+            'nombre_produit' => fake()->numberBetween(0, 1),
+            'bio' => fake()->numberBetween(0, 1),
+            'quantite_disponible' => fake()->name(),
+            'vendu_par' => fake()->name(),
+            'id_type_poids' => fake()->numberBetween(1, 10),
             'id_commercant' => fake()->numberBetween(1, 10),
             'id_categorie' => fake()->numberBetween(1, 10),
         ];
